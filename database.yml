@@ -1,0 +1,22 @@
+default: &default
+  adaptor: mysql2
+  encoding: utf-8
+  pool: 5
+  username: root
+  password: password
+  host: db
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: justinlab_development
+
+test:
+  <<: *default
+  database: justinlab_test
+
+production:
+  <<: *default
+  database: justinlab_production
+  username: justinlab
+  password: <%= ENV['JUSTINLAB_DATABASE_PASSWORD'] %>
