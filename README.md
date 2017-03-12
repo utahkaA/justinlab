@@ -1,24 +1,10 @@
-# README
+# Justinlab
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to run
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+docker-compose build
+docker-compose run --rm web rake db:create
+docker-compose run --rm web bundle exec rake db:migrate
+docker-compose up -d
+```
