@@ -12,7 +12,7 @@
 
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -23,19 +23,23 @@
         <a class="navbar-brand" href="<%= root_url(only_path: false) %>">Justinlab</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="<%= root_url(only_path: false) %>">HOME</a></li>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="<%= root_url(only_path: false) %>">Home</a></li>
           <li><a href="#info">Info</a></li>
-          <li><a href="#profile">Profile</a></li>
+          <% if user_signed_in? then %>
+            <li><a href="#profile">Profile</a></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path, class: 'post' %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path, class: 'post' %></li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
 
   <div class="container">
-    <div class="justin">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
 </body>
 </html>
