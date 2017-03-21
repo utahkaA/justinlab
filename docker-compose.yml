@@ -4,7 +4,7 @@ services:
     image: busybox
     volumes:
       - ./docker/mysql/volumes:/var/lib/mysql
-
+      - /etc/localtime:/etc/localtime:ro
   db:
     build:
       context: .
@@ -28,6 +28,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - .:/justinlab
     volumes_from:
       - datastore
